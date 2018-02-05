@@ -54,9 +54,19 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+%% Train data using training data set of size i. Then use those parameters to
+%% evaluate the cross-validation set. So for each set of training data, I get a
+%% training error, and a cross validation error.
 
-
-
+%% Loop over data
+for i= 1:m
+  %% Train the model for the first i data points
+  theta = trainLinearReg(X(1:i,:), y(1:i), lambda);
+  %% Calculate the training error for the training data: set lambda to 0
+  error_train(i) = linearRegCostFunction(X(1:i,:),y(1:i),theta,0);
+  %% Calculate cross validation error: set lambda to 0
+  error_val(i) = linearRegCostFunction(Xval,yval,theta,0);
+end
 
 
 % -------------------------------------------------------------
