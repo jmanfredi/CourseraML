@@ -21,8 +21,8 @@ S = zeros(n);
 %
 
 
-
-
+covMat = (1/m)*X'*X;
+[U, S, V] = svd(covMat);
 
 
 

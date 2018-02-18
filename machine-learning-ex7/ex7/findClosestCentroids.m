@@ -21,6 +21,16 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+for i = 1:size(X,1)
+  minIndex = 1;
+  minDistance =( X(i,:) - centroids(1,:) ) * ( X(i,:) - centroids(1,:) )';
+  for j = 1:K
+    if (( X(i,:) - centroids(j,:) ) * ( X(i,:) - centroids(j,:) )' < minDistance )
+      minDistance =( X(i,:) - centroids(j,:) ) * ( X(i,:) - centroids(j,:) )';
+      minIndex = j;
+    end
+    idx(i) = minIndex;
+end
 
 
 

@@ -26,7 +26,17 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
+%%First, make a matrix in which each row corresponds to a data point, and the
+%%columns correspond to centroids. There should be a 1 in each row for the
+%%centroid corresponding to that particular data point. All other entries
+%%are 0.
+selectorMatrix = (idx == (1:K));
+%%Now, we need to divide by the total number of points in each centroid, since
+%%really what we want is an average.
+avgSelectorMatrix = selectorMatrix./sum(selectorMatrix);
+%%Lastly, multiply this matrix by X to calculate the new centroids.
+%%centroids = (idx == (1:K))' * X;
+centroids = avgSelectorMatrix' * X;
 
 
 
