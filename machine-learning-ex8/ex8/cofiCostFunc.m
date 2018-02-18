@@ -42,18 +42,27 @@ Theta_grad = zeros(size(Theta));
 
 
 
+%% Compute cost without regularization
+predictions = X*Theta';
+error = (predictions - Y).*R;
+errorSq = error .* error;
+JnoReg = (1/2)*sum(sum( errorSq ));
 
+%% Compute regularization part of the cost
+thetaSq = Theta.*Theta;
+XSq = X.*X;
+JReg = (lambda/2)*( sum(sum(thetaSq)) + sum(sum(XSq)) );
 
+%% Compute gradients
+X_gradNoReg = error*Theta;
+Theta_gradNoReg = error'*X;
 
+%% Return the cost either with or without (lambda=0) regularization
+J = JnoReg + JReg;
 
-
-
-
-
-
-
-
-
+%% Return the gradients either with or without (lambda=0) regularization
+X_grad = X_gradNoReg + lambda*X;
+Theta_grad = Theta_gradNoReg + lambda*Theta;
 
 % =============================================================
 

@@ -21,13 +21,12 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
+%%Calculate mean by summing all values for a given feature and dividing by the number
+%%of data points
+mu = sum(X,1)./m;
 
-
-
-
-
-
-
+sqDiff = (X-mu).*(X-mu);
+sigma2 = sum(sqDiff,1)./m;
 
 
 % =============================================================
